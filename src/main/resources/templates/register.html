@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>User Creation</title>
+
+    <style>
+
+
+
+
+
+
+
+        .sign-in-button {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .btn-signIn {
+            color: #fff;
+            background: linear-gradient(45deg, #3498db, #2ecc71);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s ease;
+        }
+
+        .btn-signIn:hover {
+            background: linear-gradient(45deg, #2ecc71, #3498db);
+        }
+    </style>
+</head>
+<body class="custom-body">
+
+<form th:action="@{/create_user}" method="post" collectionId="registerForm" class="custom-form">
+    <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" class="custom-form-input" required />
+    </div>
+
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" class="custom-form-input" required />
+    </div>
+
+    <div class="form-group">
+        <label for="repeatedPassword">Repeat Password:</label>
+        <input type="password" id="repeatedPassword" name="repeatedPassword" class="custom-form-input" required />
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" class="custom-form-input" required />
+    </div>
+
+    <!-- "Sign In" button -->
+    <div class="btn-sign-in">
+        <input type="submit" class="common-button-style" value="Sign In"/>
+    </div>
+</form>
+
+</body>
+</html>

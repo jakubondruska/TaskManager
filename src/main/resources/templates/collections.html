@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Collection List</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+
+        .collection-link {
+    text-decoration: none;
+    padding: 1%;
+    color: black;
+    transition: background-color 0.3s ease;
+}
+
+.collection-link:hover {
+    background-color: #1E90FF;
+}
+
+        .btn-container {
+            display: flex;
+            margin-top: 1%;
+            margin-left: 10%;
+            justify-evenly: start; /* left side position of container */
+          }
+
+        .sort-container{
+        display: flex;
+            margin-top: 1%;
+            margin-left: 10%;
+            justify-evenly: start; /* left side position of container */
+        }
+    </style>
+</head>
+<body>
+
+
+
+<!-- Drop-down menu for sorting tasks -->
+<div class="sort-container">
+<div class="btn-sort">
+    <form th:action="@{/collections}" method="get">
+        <label class="sort-text" for="sortOrder">Sort Collections By:</label>
+        <select  class="sort-drop-field" id="sortOrder" name="sortOrder">
+            <option value="nameAsc">Name (Ascending)</option>
+            <option value="nameDesc">Name (Descending)</option>
+            <option value="numTaskAsc">Number of Tasks (Ascending)</option>
+            <option value="numTaskDesc">Number of Tasks (Descending)</option>
+        </select>
+        <button type="submit" class="common-sort-button-style">Sort</button>
+    </form>
+</div>
+</div>
+
+
+<table>
+    <thead>
+    <tr>
+        <th colspan="3" class="header">All Collections</th>
+    </tr>
+    <tr>
+        <th>Collection Name</th>
+        <th>Number of Tasks</th>
+        <th>Delete Collection</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="collection : ${viewAllCollections}">
+        <td>
+            <a th:href="@{'/collections/' + ${collection.collectionId} + '/viewAllTasksInCollection'}"
+               class="collection-link"
+               th:text="${collection.collectionName}"></a>
+        </td>
+        <td th:text="${collection.taskCount}"></td>
+        <td>
+            <form th:action="@{/collections/{collectionId}/delete(collectionId=${collection.collectionId})}" method="get">
+                <button type="submit" class="btn-delete">Delete</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+    <!-- Create Task button -->
+    <div class="btn-container">
+        <div class="btn-create-collection">
+              <a th:href="@{/viewCollectionToCreate}">
+                    <button class="common-button-style">Create Collection</button>
+                </a>
+        </div>
+    </div>
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Edit Task</title>
+    <style>
+
+        .btn-back-to-tasks {
+        text-align: left;
+        }
+
+        .btn-save-changes {
+        text-align: right;
+        }
+
+
+
+
+
+</style>
+</head>
+
+<body class="custom-body">
+
+<form class="custom-form" th:action="@{'/collections/' + ${collectionId} + '/tasks/' + ${taskId}}" th:object="${editTaskInCollection}" method="post">
+
+    <div class="form-group">
+    <label for="taskName" class="form-label">Task Name:</label>
+    <input type="text" id="taskName" th:field="*{taskName}" class="custom-form-input" required/>
+    </div>
+
+    <div class="form-group">
+    <label for="description" class="form-label">Description:</label>
+    <textarea id="description" th:field="*{description}" required class="custom-form-input"></textarea>
+    </div>
+
+    <div class="form-group">
+    <label for="dateAndTime" class="form-label">Date and Time:</label>
+    <input type="datetime-local" id="dateAndTime" name="dateAndTime" th:field="*{dateAndTime}" class="custom-form-input" required/>
+    </div>
+
+    <div class="btn-save-changes">
+    <button class="common-button-style" type="submit">Save Changes</button>
+    </div>
+
+    <div class="btn-back-to-tasks">
+        <a th:href="@{'/collections/' + ${collectionId} + '/viewAllTasksInCollection'}" class="common-button-style">Back To Tasks </a>
+    </div>
+
+
+
+</form>
+
+
+
+
+
+
+
+</body>
+</html>

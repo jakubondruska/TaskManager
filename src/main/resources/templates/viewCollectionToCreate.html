@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Collection</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+
+
+    </style>
+</head>
+<body class="custom-body">
+
+
+<form class="custom-form" method="post" th:action="@{/viewCollectionToCreate}">
+    <div class="form-group">
+        <label for="collectionName">Create A New Collection:</label>
+        <input type="text" id="collectionName" name="collectionName" class="custom-form-input" required>
+    </div>
+
+
+    <div class="btn-create-collection-submit">
+    <button class="common-button-style" type="submit">Create Collection</button>
+    </div>
+</form>
+
+<!-- Display success message -->
+<div th:if="${successMessage}" class="success-message" th:text="${successMessage}"></div>
+
+</body>
+</html>

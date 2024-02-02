@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Task</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+
+
+    </style>
+</head>
+<body class="custom-body">
+
+<form class="custom-form" th:action="@{'/collections/' + ${collectionId} + '/tasks'}" th:method="post" th:object="${task}">
+
+    <div class="form-group">
+        <input type="hidden" name="collectionId" th:value="${collectionId}" />
+    </div>
+
+    <div class="form-group">
+        <label for="taskName">Task Name:</label>
+        <input type="text" id="taskName" name="taskName" th:field="*{taskName}" class="custom-form-input" required />
+    </div>
+
+
+    <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" th:field="*{description}" class="custom-form-input"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="dateAndTime">Date and Time:</label>
+        <input type="datetime-local" id="dateAndTime" name="dateAndTime" th:field="*{dateAndTime}" class="custom-form-input"/>
+    </div>
+
+    <div class="form-group">
+            <label for="taskPriority">Task Priority</label>
+            <select id="taskPriority" name="taskPriority">
+                <option value="high">High Priority</option>
+                <option value="low">Low Priority</option>
+            </select>
+    </div>
+
+    <div class="btn-create-task-submit">
+    <button class="common-button-style" type="submit">Create Task</button>
+    </div>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+
+.completed-row {
+background-color: #f2f2f2; /* grey background for mark as completed row */
+}
+
+.description-column {
+max-width: 300px;
+white-space: nowrap;
+overflow: auto;
+text-overflow: auto;
+}
+
+.date-time-column {
+max-width: 60px;
+}
+.priority-column:
+max-width: 40px;
+}
+.mark-completed-column{
+max-width:30px;
+}
+.task-name-column{
+max-width: 270px;
+}
+.edit-column {
+max-width: 30px;
+
+}
+.delete-column{
+max-width: 40px;
+        }
+
+       /* buttons block */
+        .btn-container {
+            display: flex;
+            margin-top: 1%;
+            margin-left: 10%;
+            justify-evenly: flex-end; /* left side position of container */
+          }
+          .btn-create-task {
+          margin-left:20px;
+          }
+
+        .sort-container {
+        display: flex;
+        margin-top: 2%;
+        margin-left: 10%;
+
+        justify-evenly: flex-start;
+        }
+
+    </style>
+</head>
+<body>
+
+
+
+<!-- Drop-down menu for sorting tasks -->
+<div class="sort-container">
+    <div class="btn-sort">
+        <form th:action="@{'/collections/' + ${collectionId} + '/viewAllTasksInCollection'}" method="get">
+            <label class="sort-text" for="sortOrder">Sort Tasks By:</label>
+            <select class="sort-drop-field" id="sortOrder" name="sortOrder">
+                <option value="priority">Priority</option>
+                <option value="nameAsc">Name (Ascending)</option>
+                <option value="nameDesc">Name (Descending)</option>
+            </select>
+            <button type="submit" class="common-sort-button-style">Sort</button>
+        </form>
+    </div>
+</div>
+
+
+<table class="task-table">
+    <thead>
+    <tr>
+        <th colspan="7" class="header">Tasks In Collection</th>
+    </tr>
+    <tr>
+        <th class="task-name-column">Task Name</th>
+        <th class="description-column">Description</th>
+        <th class="date-time-column">Date and Time</th>
+        <th class="priority-column">Priority</th>
+        <th class="edit-column">Edit</th>
+        <th class="delete-column">Delete</th>
+        <th class="mark-completed-column">Mark as Completed</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="task : ${viewAllTasksInCollection}">
+        <td class="task-name-column" th:text="${task.taskName}"></td>
+        <td class="description-column" th:text="${task.description}"></td>
+        <td class="date-time-column" th:text="${task.dateAndTime}"></td>
+        <td class="priority-column" th:text="${task.taskPriority}"></td>
+        <td class="edit-column">
+            <a th:href="@{/collections/{collectionId}/tasks/{taskId}(collectionId=${collectionId}, taskId=${task.id})}">
+                <button class="btn-edit">Edit</button>
+            </a>
+        </td>
+        <td class="delete-column">
+            <a th:href="@{/collections/{collectionId}/tasks/{taskId}/delete(collectionId=${collectionId}, taskId=${task.id})}">
+                <button class="btn-delete">Delete</button>
+            </a>
+        </td>
+        <td class="mark-completed-column">
+            <form th:action="@{'/collections/' + ${collectionId} + '/tasks/markAsCompleted'}" method="post">
+                <input type="checkbox" name="completed" th:checked="${task.completed}"
+                       th:disabled="${task.completed}" th:value="${task.id}">
+                <input type="hidden" name="collectionId" th:value="${collectionId}" />
+                <button type="submit" class="btn-markAsCompleted">Mark as Completed</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- Collections a Create Task buttons -->
+<div class="btn-container">
+    <div class="btn-collections">
+        <a th:href="@{/collections}">
+            <button class="common-button-style">Collections</button>
+        </a>
+    </div>
+
+
+
+
+    <div class="btn-create-task">
+        <a th:href="tasks">
+            <button class="common-button-style">Create Task</button>
+        </a>
+    </div>
+</div>
+
+</body>
+</html>

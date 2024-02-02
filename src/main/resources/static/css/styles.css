@@ -1,0 +1,196 @@
+/* body for collections and viewAllTasksInCollection n*/
+body {
+font-family: 'Montserrat', sans-serif;
+text-align: center;
+background: linear-gradient(#8B0000, #2F4F4F, #4B0082, #8B4513);
+background-size: 300% 300%;
+}
+/* body for edit task, create task, register, login */
+.custom-body {
+margin: 0;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+min-height: 100vh;
+background-color: #f0f0f0;
+font-family: 'Arial', sans-serif;
+}
+
+/* form for edit task, create task, register, login */
+.custom-form{
+background-color: #fff;
+border-radius: 15px;
+padding: 5%;
+max-width: 500px;
+width: 80%;
+margin: auto;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+ /* form inputs config */
+.form-group {
+margin-bottom: 20px;
+}
+
+.custom-form-input{
+width: 100%;
+padding: 10px;
+border: 1px solid #ccc;
+border-radius: 5px;
+box-sizing: border-box;
+}
+
+/* form fields config */
+label {
+display: block;
+margin-bottom: 10px;
+color: #333;
+font-size: 16px;
+}
+
+/* general table config */
+table {
+width: 80%;
+background-color:  #fff;
+border-collapse: collapse;
+margin-top: 2%;
+margin-left: auto; /* Center the table horizontally */
+margin-right: auto; /* Center the table horizontally */
+}
+
+/* row, columns, data in table - details */
+th, td {
+border: 3px solid #696969;
+padding: 10px;
+text-align: center;
+}
+}
+
+/* adds for background animation */
+@keyframes gradient {
+0% {
+background-position: 0% 50%;
+}
+50% {
+background-position: 100% 50%;
+}
+100% {
+background-position: 0% 50%;
+}
+ }
+
+/* header title design in table */
+.header {
+color: #fff;
+background: linear-gradient(45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+background-size: 200% 4000%;
+animation: gradient 15s ease infinite;
+text-align: center;
+font-size: 300%;
+font-weight: bold;
+padding:1%;
+font-family: 'Pacifico', cursive;
+}
+
+/* delete button design */
+.btn-delete {
+background-color: #dc3545;
+color: #fff;
+transition: transform 0.5s ease;
+border-radius: 5px;
+padding: 5px 10px;
+border: none;
+}
+
+/* delete button hover design */
+.btn-delete:hover {
+transform: scale(1.2);
+}
+
+/* edit button design */
+.btn-edit {
+background-color: #ffc107;
+color: #000;
+border: none;
+transition: transform 0.5s ease;
+border-radius: 5px;
+cursor: pointer;
+border-radius: 5px;
+padding: 5px 10px;
+}
+.btn-edit:hover {
+transform: scale(1.2);
+}
+
+/* mark as completed button design */
+.btn-markAsCompleted {
+background-color: #17a2b8;
+color: #fff;
+transition: transform 0.5s ease;
+border-radius: 5px;
+padding: 5px 10px;
+border: none;
+}
+.btn-markAsCompleted:hover {
+transform: scale(1.2);
+}
+
+/* common style for almost all buttons */
+.common-button-style {
+background: linear-gradient(45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+color: #fff;
+background-size: 200% 400%;
+padding: 12px 20px;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+font-size: 16px;
+font-family: "Lucida Console", "Courier New", monospace;
+}
+
+/* common style hover for almost all buttons */
+.common-button-style:hover {
+transform: scale(1.2);
+}
+
+/* sort button style for drop menu */
+.common-sort-button-style{
+background: linear-gradient(45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+color: #fff;
+background-size: 200% 400%;
+padding: 12px 20px;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+font-size: 16px;
+font-family: "Lucida Console", "Courier New", monospace;
+
+}
+
+ /* text design drop menu */
+.sort-text {
+font-family: 'Montserrat', sans-serif;
+text-align: left;
+font-size: 20px;
+color: #fff;
+font-weight: bold;
+}
+
+/* hover effect for the sort button */
+.common-sort-button-style:hover {
+background: linear-gradient(45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+}
+
+/* sorting drop down menu table */
+.sort-drop-field {
+padding: 8px;
+border: 1px solid #ddd;
+border-radius: 4px;
+box-sizing: border-box;
+font-size: 15px;
+}
+
+
+
+
+
