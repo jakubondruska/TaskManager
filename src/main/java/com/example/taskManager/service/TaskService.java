@@ -16,6 +16,7 @@ import java.util.Optional;
 @Service
 public class TaskService {
 
+    public static final String HIGH = "high";
     @Autowired
     private TaskRepository taskRepository;
 
@@ -32,7 +33,7 @@ public class TaskService {
     }
 
     @Transactional
-    public Task createTask(Long collectionId, Task task) {
+    public void createTask(Long collectionId, Task task) {
 
         try {
 
@@ -47,7 +48,7 @@ public class TaskService {
 
             task.setTaskPriority(task.getTaskPriority());
 
-            return taskRepository.save(task);
+            taskRepository.save(task);
 
         } catch (Exception e) {
             throw new RuntimeException("Creating task failed.", e);
@@ -98,9 +99,9 @@ public class TaskService {
             case "nameAsc" ->
                     taskList.sort(Comparator.comparing(Task::getTaskName, Comparator.nullsLast(Comparator.naturalOrder())));
             case "priority" -> taskList.sort(Comparator.comparing(Task::getTaskPriority, (priority1, priority2) -> {
-                if ("high".equalsIgnoreCase(priority1) && !"high".equalsIgnoreCase(priority2)) {
+                if (HIGH.equalsIgnoreCase(priority1) && !HIGH.equalsIgnoreCase(priority2)) {
                     return -1;
-                } else if (!"high".equalsIgnoreCase(priority1) && "high".equalsIgnoreCase(priority2)) {
+                } else if (!HIGH.equalsIgnoreCase(priority1) && HIGH.equalsIgnoreCase(priority2)) {
                     return 1;
                 } else {
                     return 0;

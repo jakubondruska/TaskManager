@@ -7,6 +7,8 @@ import java.time.LocalDateTime;
 @Table(name = "task_manager")
 public class Task {
 
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,7 +29,6 @@ public class Task {
     private String taskPriority;
 
 
-    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "collection_id")
     private Collections collections;
@@ -45,6 +46,19 @@ public class Task {
         return "Task{" +
                 "taskPriority='" + taskPriority + '\'' +
                 '}';
+    }
+
+    public Task(Long id, String taskName, String description, LocalDateTime dateAndTime, Boolean completed, String taskPriority, Collections collections) {
+        this.id = id;
+        this.taskName = taskName;
+        this.description = description;
+        this.dateAndTime = dateAndTime;
+        this.completed = completed;
+        this.taskPriority = taskPriority;
+        this.collections = collections;
+    }
+
+    public Task() {
     }
 
     public Long getId() {

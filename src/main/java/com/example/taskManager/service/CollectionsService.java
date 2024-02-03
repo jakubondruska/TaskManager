@@ -14,11 +14,16 @@ import java.util.Optional;
 @Service
 public class CollectionsService {
 
-    @Autowired
-    private CollectionRepository collectionsRepo;
 
-    @Autowired
-    private TaskRepository tasksRepo;
+    private final CollectionRepository collectionsRepo;
+
+
+    private final TaskRepository tasksRepo;
+
+    public CollectionsService(CollectionRepository collectionsRepo, TaskRepository tasksRepo) {
+        this.collectionsRepo = collectionsRepo;
+        this.tasksRepo = tasksRepo;
+    }
 
 
     public List<Collections> getCollections() {
@@ -60,18 +65,23 @@ public class CollectionsService {
     }
     public void sortCollections(List<Collections> collectionsList,String sortOrder) {
 
+
         // getting task quantity in specific collection
         for (Collections collections : collectionsList) {
             int taskCount = collections.getTaskToCollection().size();
             collections.setTaskCount(taskCount);
         }
 
+        if (sortOrder == null) {
+            throw new NullPointerException("Sort order must be filed");
+        }
         // collection sorting data
         switch (sortOrder) {
             case "nameDesc" -> collectionsList.sort(Comparator.comparing(Collections::getCollectionName).reversed());
             case "nameAsc" -> collectionsList.sort(Comparator.comparing(Collections::getCollectionName));
             case "numTaskAsc" -> collectionsList.sort(Comparator.comparingInt(Collections::getTaskCount));
             case "numTaskDesc" -> collectionsList.sort(Comparator.comparingInt(Collections::getTaskCount).reversed());
+            default -> throw new IllegalArgumentException("Sort order not supported");
         }
     }
 

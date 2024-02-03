@@ -8,6 +8,11 @@ import java.util.List;
 @Table(name = "collections_db")
 public class Collections {
 
+    public Collections(Long collectionId, String collectionName, List<Task> taskToCollection) {
+        this.collectionId = collectionId;
+        this.collectionName = collectionName;
+        this.taskToCollection = taskToCollection;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,9 +25,8 @@ public class Collections {
     @OneToMany(mappedBy = "collections", cascade = CascadeType.ALL)
     private List<Task> taskToCollection = new ArrayList<>();
 
-
-
-
+    public Collections() {
+    }
 
     public Long getCollectionId() {
         return collectionId;
